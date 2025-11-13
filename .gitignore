@@ -146,16 +146,7 @@ env.local
 ehthumbs.db
 Icon?
 
-# Others
-*.swp
-*.swo
-._*
-.cache
-.project
-.classpath
-.settings/
-Thumbs.db
-desktop.ini
+
 
 # node
 node_modules/
