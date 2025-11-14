@@ -1,0 +1,33 @@
+{% extends "layout.html" %} 
+{% block title %} Home - Tweets Website {% endblock %}
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Welcome to the Tweets Website</h1>
+  <p>This is the home page where you can find the latest tweets.</p>
+</div>
+
+<a class="btn btn-primary my-3" href="{% url 'create_tweet' %}">Create New Tweet</a>
+
+<div class="container row gap-3">
+  {% for tweet in tweets %}
+  <div class="card bg-dark text-white border-1 border-secondary p-2" style="width: 18rem">
+    {% if tweet.photo %}
+    <img src="{{ tweet.photo.url }}" class="card-img-top" alt="{{ tweet.user.username }} photo" loading="lazy" />
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">{{ tweet.user.username }}</h5>
+      <p class="card-text">
+        {{ tweet.text }}
+      </p>
+      {% if user == tweet.user %}
+      <div>
+        <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
